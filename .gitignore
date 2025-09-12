@@ -1,0 +1,16 @@
+# Ignore instance folder
+instance/
+
+# Ignore PyCharm settings
+.idea/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+.venv/
+
+# Ignore logs and temp files
+*.log
+*.tmp

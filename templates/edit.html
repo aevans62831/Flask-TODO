@@ -1,0 +1,11 @@
+<!-- templates/edit.html -->
+<!doctype html>
+<title>Edit Todo #{{ todo.id }}</title>
+<h1>Replace {{ todo.task }} with:</h1>
+
+<form action="{{ url_for('edit', todo_id=todo.id) }}" method="post">
+    <label>
+        <input type="text" name="task" required>
+    </label>
+    <input type="submit" value="Submit">
+</form>

@@ -1,34 +1,45 @@
-<!-- templates/index.html -->
-<!doctype html>
-<title>TODO App</title>
-<h1>TODO List</h1>
-<table border="1">
-  <tr>
-    <th>Task</th>
-    <th>Edit</th>
-    <th>Delete</th>
-    <th>Mark Completed</th>
-  </tr>
-  {% for todo in todos %}
-    <tr>
-      <td>
-          <span style="{% if todo.completed %}text-decoration: line-through;{% endif %}">
-              {{ todo.task }}
-          </span>
-      </td>
-      <td><a href="{{ url_for('edit', todo_id=todo.id) }}">Edit</a></td>
-      <td><a href="{{ url_for('delete', todo_id=todo.id) }}">Delete</a></td>
-      <td>
-        <form action="{{ url_for('toggle_complete', todo_id=todo.id) }}" method="post">
-            <button type="submit">X</button>
-        </form>
-      </td>
-    </tr>
-  {% endfor %}
-</table>
-<br>
-<form action="{{ url_for('add') }}" method="post">
-  <input type="text" name="task" required>
-  <input type="submit" value="Add Task">
-</form>
-<br>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TODO App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>TODO List</h1>
+    <table border="1">
+      <tr>
+        <th>Task</th>
+        <th>Due Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Mark Completed</th>
+      </tr>
+      {% for todo in todos %}
+        <tr>
+          <td>
+              <span style="{% if todo.completed %}text-decoration: line-through;{% endif %}">
+                  {{ todo.task }}
+              </span>
+          </td>
+          <td>{{ todo.date }}</td>
+          <td><a href="{{ url_for('edit', todo_id=todo.id) }}">Edit</a></td>
+          <td><a href="{{ url_for('delete', todo_id=todo.id) }}">Delete</a></td>
+          <td>
+            <form action="{{ url_for('toggle_complete', todo_id=todo.id) }}" method="post">
+                <button type="submit">X</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <form action="{{ url_for('add') }}" method="post">
+      <input type="text" name="task" required>
+      <input type="date" name="date" required>
+      <input type="submit" value="Add Task">
+    </form>
+    <br>
+</body>
+</html>
